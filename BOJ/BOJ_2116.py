@@ -1,33 +1,28 @@
 def bottom_index(i):
-    if i == 0:
-        return -1
-    else:
-        return (i + 1) % 4 + 1
+    if i == 0 or i == 5: return abs(i - 5)
+    else: return (i + 1) % 4 + 1
 
-def max_finder(i, array):
+def dice_function(i, array, total):
     lst = array[:]
     b_index = bottom_index(i)
     bottom = lst[b_index]
     lst[i] = 0
     lst[b_index] = 0
-
-    return bottom, max(lst)
+    total += max(lst)
+    return bottom, total
 
 N = int(input())
 dice_list =[list(map(int, input().split())) for _ in range(N)]
-answer = 0
+answer = []
+
 for i in range(len(dice_list[0])):
     total = 0
-    bottom, max_sum = max_finder(i, dice_list[0])
-    total += max_sum
+    bottom, total = dice_function(i, dice_list[0], total)
 
     for dice in dice_list[1:]:
         t_index = dice.index(bottom)
-        bottom, max_sum = max_finder(t_index, dice)
-        total += max_sum
+        bottom, total = dice_function(t_index, dice, total)
+    answer.append(total)
 
-    if total > answer:
-        answer = total
-
-print(answer)
+print(max(answer))
 

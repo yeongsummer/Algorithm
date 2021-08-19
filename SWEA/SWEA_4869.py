@@ -1,15 +1,13 @@
 # DP 이용
 def paper(n):
-    lst = [1, 1]
+    lst = [1, 3]
+    for i in range(2, n):
+        lst.append(lst[i-1] + lst[i-2]*2)
 
-    for i in range(20, n+1, 10):
-        i //= 10
-        lst.append(lst[i-2]+2**(i-1))
-
-    return lst[n//10]
+    return lst[n-1]
 
 T = int(input())
 
 for tc in range(T):
     n = int(input())
-    print('#{0} {1}'.format(tc+1, paper(n)))
+    print('#{0} {1}'.format(tc+1, paper(n//2)))
