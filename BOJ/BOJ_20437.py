@@ -1,5 +1,7 @@
 # 문자열 게임2
+import sys
 from collections import defaultdict
+input = sys.stdin.readline
 
 # 완전 탐색 효율성 최악
 # def string_game1(W, K):
