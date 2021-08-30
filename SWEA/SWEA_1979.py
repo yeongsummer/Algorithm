@@ -5,7 +5,7 @@ def rotate(N, matrix):
 
     for i in range(N):
         for j in range(N):
-            matrix90[j][N - 1 - i] = matrix[i][j]
+            matrix90[j][N-1-i] = matrix[i][j]
 
     return matrix90
 
