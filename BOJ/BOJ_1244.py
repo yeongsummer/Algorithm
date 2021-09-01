@@ -1,3 +1,5 @@
+# 스위치 켜고 끄기
+
 def change(a): # 0, 1로 바꾸는 함수
   return 0 if a else 1
 
