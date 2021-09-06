@@ -1,3 +1,4 @@
+# 적록색약
 from copy import deepcopy
 
 def dfs_s(i, j, color):
