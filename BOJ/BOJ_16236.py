@@ -42,7 +42,6 @@ def bfs(start, shark):
         if flag3:
             break
         
-    
     if flag2:
         for i in range(N):
             for j in range(N):
