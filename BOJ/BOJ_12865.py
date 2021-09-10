@@ -1,3 +1,6 @@
+# 평범한 배낭
+# 메모이제이션 이용
+
 def dp(bag,N,K):
     for i in range(1, N):
         for j in range(1, K+1):
