@@ -43,7 +43,7 @@ def solution(grid):
         # else: 
         answer.append(cycle)
         
-        answer.sort()
+    answer.sort()
     return answer
 
 grid = ["S","S"]

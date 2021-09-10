@@ -14,9 +14,8 @@ def solution(weights, head2head):
             win_rate = head2head[i].count('W')/fight*100
         else:
             win_rate = 0
-
-        win.append((win_rate, cnt, weights[i], i))            
-        win = sorted(win, key=lambda x:(-x[0],-x[1],-x[2],x[3]))
-
+        win.append((win_rate, cnt, weights[i], i))
+                   
+    win = sorted(win, key=lambda x:(-x[0],-x[1],-x[2],x[3]))
     answer = [i[3]+1 for i in win]
     return answer
