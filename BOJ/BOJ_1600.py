@@ -41,6 +41,6 @@ if sum(distance[H-1][W-1])==0:
 else:
     answer = 999999
     for cnt in distance[H-1][W-1]:
-        if 0 < answer:
+        if 0 < cnt < answer:
             answer = cnt
     print(answer-1)
