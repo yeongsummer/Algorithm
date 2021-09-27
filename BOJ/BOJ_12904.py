@@ -7,7 +7,8 @@ while i != target_l:
     if T[-1]=='A':
         T = T[:-1]
     else:
-        T = T[-1:0:-1]
+        T = T[:-1]
+        T = T[::-1]
     i -= 1
 
 if S == T:

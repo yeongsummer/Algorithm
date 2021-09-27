@@ -37,4 +37,3 @@ for i in range(N):
 
 cut(n)
 print(count())
-
