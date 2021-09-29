@@ -11,22 +11,16 @@ for a in alphas:
         for i, b in enumerate(word[::-1]):
             if a == b:
                 total += 10**i
-    lst.append((total,a))
+    lst.append(total)
 lst.sort(reverse=True)
 
 num = 9
-for item in lst:
-    a = item[1]
-    for word in words:
-        length = len(word)
-        for i in range(length):
-            if word[i] == a:
-                word[i] = str(num)
-    num -= 1
-    
 ans = 0
-for word in words:
-    ans += int(''.join(word))
+for item in lst:
+    if item == 0:
+        break
+    ans += num*int(item)
+    num -= 1
 print(ans)
 
 
