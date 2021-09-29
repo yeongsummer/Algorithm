@@ -10,6 +10,7 @@ for i in range(N):
             chickens.append((i,j))
         if matrix[i][j] == 1:
             houses.append((i,j))
+
 ans = 9999999
 for choices in combinations(chickens,M):
     total = 0

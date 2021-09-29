@@ -21,5 +21,7 @@ def dfs(n):
 M, N = map(int, sys.stdin.readline().split())
 matrix = [list(map(int, sys.stdin.readline().split())) for _ in range(M)]
 dp = [[-1 for _ in range(N)] for _ in range(M)]
-ans = 0
 print(dfs((0,0)))
+for i in range(M):
+    print(dp[i])
+ans = 0
