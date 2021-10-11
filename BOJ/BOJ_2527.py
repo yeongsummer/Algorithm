@@ -15,7 +15,7 @@ for _ in range(4):
     elif p1 == x2:
         if y2 == q1 or q2 == y1:
             result = 'c'
-        elif y2 < p1 and y1 < q2:
+        elif y2 < q1 and y1 < q2:
             result = 'b'
     print(result)
     
