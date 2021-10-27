@@ -2,7 +2,6 @@ def solution(rectangle, characterX, characterY, itemX, itemY):
     answer = 0
     cnt = len(rectangle)
     point = []
-    total1 = 
     point1 = []
     point2 = []
     for i in range(cnt):
