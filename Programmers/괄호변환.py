@@ -29,9 +29,8 @@ def solution(p):
                 close_cnt += 1
             if open_cnt == close_cnt:
                 break
+            
         u, v = p[:i+1], p[i+1:]
-        print('u:',u)
-        print('v:',v)
         if balanced(u):
             answer += u
             solution(v)
