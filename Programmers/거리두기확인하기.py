@@ -43,6 +43,3 @@ def solution(places):
             answer.append(1)
 
     return answer
-
-places = [["PXOOO", "OOOOO", "PXOOO", "OOOOO", "OOOPO"]] 
-print(solution(places))
