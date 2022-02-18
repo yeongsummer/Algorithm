@@ -12,7 +12,7 @@ def solution(play_time, adv_time, logs):
         s_h, s_m, s_s = map(int, start.split(':'))
         e_h, e_m, e_s = map(int, end.split(':'))
         start = 3600*s_h + 60*s_m + s_s
-        end = 3600*e_h + 60*e_m + e_s - 1
+        end = 3600*e_h + 60*e_m + e_s
         dp[start] += 1
         dp[end] -= 1
 
@@ -25,7 +25,7 @@ def solution(play_time, adv_time, logs):
 
     max_t = 0
     answer = 0
-    for i in range(0, total-a_time):
+    for i in range(-1, total-a_time):
         t = dp[i+a_time] - dp[i]
         if t > max_t:
             max_t = t
