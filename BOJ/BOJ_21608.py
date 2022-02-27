@@ -31,7 +31,6 @@ for x in range(N):
         for dx, dy in dxy:
             nx, ny = x + dx, y + dy
             if 0 <= nx < N and 0 <= ny < N:
-                print(room[x][y])
                 if room[nx][ny] in like[room[x][y]]:
                     like_cnt += 1
         if like_cnt:
