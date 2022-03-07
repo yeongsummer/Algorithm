@@ -1,3 +1,7 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
 def bfs(i, j):
     global temp
     temp += 1
@@ -29,14 +33,11 @@ def find(i, j, island):
                     return 0
                 
                 if board[nx][ny]:
-                    return dist[nx][ny] -2
+                    return dist[nx][ny] - 2
 
                 deq.append((nx, ny))
     return 0
 
-import sys
-from collections import deque
-input = sys.stdin.readline
 dxy = [(1,0),(0,1),(0,-1),(-1,0)]
 N = int(input())
 board = [list(map(int, input().split())) for _ in range(N)]
