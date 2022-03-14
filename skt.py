@@ -74,9 +74,6 @@ def solution(width, height, diagonals):
         diag_board[nx][ny] = 1
         diag_board[nx+1][ny+1] = 2
 
-    for i in range(height+1):
-        print(diag_board[i])
-
     for i in range(height, -1, -1):
         for j in range(width+1):
             if i == height:
@@ -85,15 +82,13 @@ def solution(width, height, diagonals):
                 dp[i][j] += dp[i+1][j]
             else:
                 dp[i][j] += dp[i][j-1] + dp[i+1][j]
+                
             if diag_board[i][j] == 1:
                 dp[i][j] += dp[i+1][j+1]
             elif diag_board[i][j] == 2:
                 dp[i][j] += dp[i-1][j-1]
 
-    for i in range(height+1):
-        print(dp[i])
-
-    return dp[0][width]
+    return (dp[0][width]-1)%10000019
 
 
     diag_board = [[0]*(width+1) for _ in range(height+1)]
