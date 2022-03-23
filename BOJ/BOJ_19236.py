@@ -1,14 +1,7 @@
 from copy import deepcopy
-def dfs(x, y, total, n):
-    global board, answer
 
-    print(x, y, total, n)
-
-    for i in range(4):
-        print(board[i])
-
-    if n > 3:
-        return
+def dfs(x, y, total, n, board, locations):
+    global answer
 
     answer = max(answer, total)
 
@@ -23,9 +16,10 @@ def dfs(x, y, total, n):
         while True:
             f_nx, f_ny = f_x + dxy[d][0], f_y + dxy[d][1]
 
-            if 0 <= f_nx < 4 and 0 <= f_ny < 4 and board[f_nx][f_ny][0]:
+            if 0 <= f_nx < 4 and 0 <= f_ny < 4 and board[f_nx][f_ny][0] != 's':
                 locations[i] = (f_nx, f_ny)
-                locations[board[f_nx][f_ny][0]-1] = (f_x, f_y)
+                if board[f_nx][f_ny][0]:
+                    locations[board[f_nx][f_ny][0]-1] = (f_x, f_y)
                 board[f_x][f_y] = board[f_nx][f_ny]
                 board[f_nx][f_ny] = [i+1, d]
                 break
@@ -38,21 +32,18 @@ def dfs(x, y, total, n):
     s_d = board[x][y][1]
     nx, ny = x + dxy[s_d][0], y + dxy[s_d][1]
 
-    print('shark:', s_d, x, y)
-    origin_board = deepcopy(board)
     while 0 <= nx < 4 and 0 <= ny < 4:
         if board[nx][ny][0]:
-            fish = board[nx][ny][0]
-            board[nx][ny][0] = 0
-            location = locations[fish-1]
-            locations[fish-1] = 0
-            dfs(nx, ny, total+fish, n+1)
-            board = origin_board
-            board[nx][ny][0] = fish
-            locations[fish-1] = location
-
-        print(nx, ny)
+            copy_board = deepcopy(board)
+            copy_locations = deepcopy(locations)
+            fish = copy_board[nx][ny][0]
+            copy_board[nx][ny][0] = 's'
+            copy_board[x][y][0] = 0
+            copy_locations[fish-1] = 0
+            dfs(nx, ny, total+fish, n+1, copy_board, copy_locations)
+            
         nx, ny = nx + dxy[s_d][0], ny + dxy[s_d][1]
+
 
 
 
@@ -67,8 +58,6 @@ for i in range(4):
 answer = 0
 start = board[0][0][0]
 locations[start-1] = 0
-board[0][0][0] = 0
-dfs(0, 0, start, 0)
-
-print(board)
-print(locations)
+board[0][0][0] = 's'
+dfs(0, 0, start, 0, board, locations)
+print(answer)
