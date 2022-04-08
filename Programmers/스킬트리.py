@@ -16,8 +16,3 @@ def solution(skill, skill_trees):
         else:
             answer += 1
     return answer
-
-
-skill = "CBD"
-skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]
-print(solution(skill, skill_trees))
