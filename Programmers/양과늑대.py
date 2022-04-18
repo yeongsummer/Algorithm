@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-from tkinter import E
 
 def solution(info, edges):
     def parents_find(x):
