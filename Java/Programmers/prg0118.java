@@ -3,11 +3,14 @@ package Java.Programmers;
 
 public class prg0118{
     public static void main(String[] args) throws Exception {
-        int answer = solution("4324", "66");
+        Solution solution = new Solution();
+        int answer = solution.solution("4324", "66");
         System.out.println(answer);
     }
+}
 
-    public static int solution(String t, String p) {
+class Solution{
+    public int solution(String t, String p) {
         long num = Long.parseLong(p);
         int answer = 0;
 
@@ -20,4 +23,3 @@ public class prg0118{
         return answer;
     }
 }
-
