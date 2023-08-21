@@ -6,7 +6,7 @@ public class island {
     
 }
     
-class Solution {
+class Island {
     static char[][] map;
     static boolean[][] visited;
     static int[] dx = {-1, 1, 0, 0};
