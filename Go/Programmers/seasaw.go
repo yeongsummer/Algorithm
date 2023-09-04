@@ -4,7 +4,7 @@ import (
 	"sort"
 )
 
-func solution(weights []int) int64 {
+func seeSaw(weights []int) int64 {
 	var answer int
 	sort.Ints(weights)
 	var prev int;
