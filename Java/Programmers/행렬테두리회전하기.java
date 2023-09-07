@@ -1,3 +1,4 @@
+package Programmers;
 class Solution {
     static int[][] matrix;
     static int minNum;

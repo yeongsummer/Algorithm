@@ -1,5 +1,5 @@
 // 크기가 작은 문자열
-package Java.Programmers;
+package Programmers;
 
 public class prg0118{
     public static void main(String[] args) throws Exception {

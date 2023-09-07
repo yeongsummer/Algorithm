@@ -1,6 +1,6 @@
 // 삼각달팽이
 
-package Java.Programmers;
+package Programmers;
 
 public class prg0117 {
     public int[] solution(int n) {

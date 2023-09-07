@@ -1,4 +1,4 @@
-package Java.Programmers;
+package Programmers;
 
 public class carpet {
     public static void main(String[] args) throws Exception {

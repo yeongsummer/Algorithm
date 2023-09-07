@@ -1,5 +1,5 @@
 // 단속 카메라
-package Java.Programmers;
+package Programmers;
 
 import java.util.Arrays;
 import java.util.Comparator;
