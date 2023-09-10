@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 
-class Solution {
+class Prg0119 {
     public int solution(int[][] routes) {
         int answer = 0;
         

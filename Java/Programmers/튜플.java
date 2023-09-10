@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-class Solution {
+class Tuple {
     public int[] solution(String s) {
         String[] arr = s.substring(2, s.length() - 2).split(",|\\},\\{");
         HashMap<Integer,Integer> hashMap = new HashMap<Integer,Integer>();

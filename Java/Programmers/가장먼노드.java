@@ -1,7 +1,7 @@
 package Programmers;
 import java.util.*;
 
-class Solution {
+class Node {
     public int solution(int n, int[][] edge) {
         ArrayList<ArrayList<Integer>> graph=new ArrayList<ArrayList<Integer>>();
         for(int i=0;i<edge.length;i++){

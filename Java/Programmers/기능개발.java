@@ -1,7 +1,7 @@
 package Programmers;
 import java.util.*;
 
-class Solution {
+class Develop {
     public int[] solution(int[] progresses, int[] speeds) {
         List<Integer> ans = new ArrayList<>();
         Deque<Integer> p = new ArrayDeque<>();

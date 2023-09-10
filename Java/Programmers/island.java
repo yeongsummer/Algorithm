@@ -2,9 +2,6 @@ package Programmers;
 
 import java.util.*;
 
-public class island {
-    
-}
     
 class Island {
     static char[][] map;

@@ -1,15 +1,7 @@
 // 크기가 작은 문자열
 package Programmers;
 
-public class prg0118{
-    public static void main(String[] args) throws Exception {
-        Solution solution = new Solution();
-        int answer = solution.solution("4324", "66");
-        System.out.println(answer);
-    }
-}
-
-class Solution{
+class Prg0118{
     public int solution(String t, String p) {
         long num = Long.parseLong(p);
         int answer = 0;

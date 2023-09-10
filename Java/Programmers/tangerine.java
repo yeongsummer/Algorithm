@@ -2,12 +2,7 @@ package Programmers;
 
 import java.util.*;
 
-public class tangerine {
-    public static void main(String[] args) throws Exception {
-    }
-}
-
-class Solution {
+class Tangerine {
     public int solution(int k, int[] tangerine) {
         int answer = 0;
         HashMap<Integer,Integer> map =new HashMap<>();

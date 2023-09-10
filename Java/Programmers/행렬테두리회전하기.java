@@ -1,5 +1,6 @@
 package Programmers;
-class Solution {
+
+class matrix {
     static int[][] matrix;
     static int minNum;
     public int[] solution(int rows, int columns, int[][] queries) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-class Solution {
+class PlayingAlone {
     public int solution(int[] cards) {
         List<Integer> answer = new ArrayList<Integer>();
         int[] opened = new int[cards.length];
