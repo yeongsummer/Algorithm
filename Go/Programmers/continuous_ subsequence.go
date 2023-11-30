@@ -1,12 +1,8 @@
-package main
+package programmers
 
 import (
 	"fmt"
 )
-
-func main() {
-	fmt.Println(sums([]int{7,9,1,1,4}))
-}
 
 func sums(elements []int) int {
 	memo := elements

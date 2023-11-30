@@ -1,6 +1,6 @@
 package programmers
 
-func solution(board []string) int {
+func robot(board []string) int {
 	r_i, r_j := findCoordinate(board)
 	d := bfs(board, []int{r_i, r_j})
     return d
