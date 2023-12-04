@@ -5,34 +5,44 @@ import (
 )
 
 func main() {
-	fmt.Println(sums([]int{7,9,1,1,4}))
+	fmt.Println(queue_sum([]int{2,3,2}, []int{1,1,1}))
 }
 
-func sums(elements []int) int {
-	memo := elements
-	l := len(elements)
-    for i := 1; i < l; i ++ {
-		for j := 0; j < l; j ++ {
-			memo = append(memo, memo[len(memo)-5] + memo[(j+i) % l])
-			fmt.Println(i, j, memo, len(memo))
-		}
+func queue_sum(queue1 []int, queue2 []int) int {
+	answer := 0
+	queue := append(queue1, queue2...)
+	total_sum := 0
+	for _, n := range queue {
+		total_sum += n
 	}
 
-	trimmed_memo := removeDuplicates(memo)
-	fmt.Print(trimmed_memo)
-    return len(trimmed_memo)
-}
-
-func removeDuplicates(input []int) []int {
-	unique := make(map[int]bool)
-	result := []int{}
-
-	for _, num := range input {
-		if !unique[num] {
-			unique[num] = true
-			result = append(result, num)
-		}
+	if total_sum % 2 > 0 {
+		return -1
 	}
 
-	return result
+	target_sum := total_sum/2
+	interval_sum := 0
+	for _, n := range queue1 {
+		interval_sum += n
+	}
+	start, end := 0, len(queue1)
+	l := len(queue)
+
+	for end < l {
+		for start < l && interval_sum > target_sum {
+			interval_sum -= queue[start]
+			start ++
+			answer += 1
+		}
+
+		if interval_sum == target_sum {
+			return answer
+		}
+
+		interval_sum += queue[end]
+		end ++
+		answer ++
+	}
+	
+    return -1
 }
