@@ -5,44 +5,36 @@ import (
 )
 
 func main() {
-	fmt.Println(queue_sum([]int{2,3,2}, []int{1,1,1}))
+	fmt.Println(tournament(256,127,255))
 }
 
-func queue_sum(queue1 []int, queue2 []int) int {
-	answer := 0
-	queue := append(queue1, queue2...)
-	total_sum := 0
-	for _, n := range queue {
-		total_sum += n
+func tournament(n int, a int, b int) int {
+	answer := 1
+    if a > b {
+        a, b = b, a
+    }
+	for a%2 != 1 || b%2 != 0 || a+1 == b {
+		answer += 1
+		a = a/2 + a%2
+		b = b/2 + b%2
 	}
-
-	if total_sum % 2 > 0 {
-		return -1
-	}
-
-	target_sum := total_sum/2
-	interval_sum := 0
-	for _, n := range queue1 {
-		interval_sum += n
-	}
-	start, end := 0, len(queue1)
-	l := len(queue)
-
-	for end < l {
-		for start < l && interval_sum > target_sum {
-			interval_sum -= queue[start]
-			start ++
-			answer += 1
-		}
-
-		if interval_sum == target_sum {
-			return answer
-		}
-
-		interval_sum += queue[end]
-		end ++
-		answer ++
-	}
-	
-    return -1
+	return answer
 }
+
+
+// func findRound(n int, a int, b int) int {
+// 	fmt.Println("start", a,b, n)
+//     for i := int(math.Sqrt(float64(n))); i >= 0; i -- {
+// 		fmt.Println("i", i)
+// 		m := int(math.Pow(2, float64(i)))
+// 		if b > m {
+// 			fmt.Println(i, m)
+// 			if a <= m {
+// 				return i+1
+// 			} else {
+// 				return findRound(m, a - m, b - m)
+// 			}
+// 		}
+// 	}
+// 	return -1
+// }
