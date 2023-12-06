@@ -1,9 +1,5 @@
 package programmers
 
-import (
-	"fmt"
-)
-
 func tournament(n int, a int, b int) int {
 	answer := 1
     if a > b {
