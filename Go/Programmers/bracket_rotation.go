@@ -1,12 +1,6 @@
-package main
+package programmers
 
-import (
-	"fmt"
-)
-
-func main() {
-	fmt.Println(checkBracket("[](){}"))
-}
+import "fmt"
 
 func checkBracket(s string) int {
 	answer := 0
