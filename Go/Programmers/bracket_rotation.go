@@ -1,6 +1,5 @@
 package programmers
 
-import "fmt"
 
 func checkBracket(s string) int {
 	answer := 0
