@@ -1,12 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	fmt.Println(hanoi(2))
-}
+package programmers
 
 func hanoi(n int) (answer [][]int) {
     move(n, 1, 3, 2, &answer)
