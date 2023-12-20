@@ -1,14 +1,9 @@
-package main
+package programmers
 
 import (
-    "strconv"
+	"strconv"
 	"strings"
-	"fmt"
 )
-
-func main() {
-	fmt.Println(binary("110010101001"))
-}
 
 func binary(s string) []int {
 	i, zero_cnt := 0, 0
