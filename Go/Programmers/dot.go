@@ -1,13 +1,6 @@
-package main
+package programmers
 
-import (
-	"fmt"
-	"math"
-)
-
-func main() {
-	fmt.Println(dot(2, 5))
-}
+import "math"
 
 func dot(k int, d int) int64 {
 	var answer int64

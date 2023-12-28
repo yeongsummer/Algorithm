@@ -1,6 +1,6 @@
 package programmers
 
-func solution(arrayA []int, arrayB []int) int {
+func numberCard(arrayA []int, arrayB []int) int {
     divisorA := findGcd_N(arrayA)
 	divisorB := findGcd_N(arrayB)
 
