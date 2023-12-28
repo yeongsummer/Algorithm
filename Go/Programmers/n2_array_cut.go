@@ -1,12 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	fmt.Println(array_cut(3,2,5))
-}
+package programmers
 
 func array_cut(n int, left int64, right int64) []int {
 	result := []int{}
