@@ -2,58 +2,35 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
-	fmt.Println(mineral([]int{1,0,1}, []string{"iron", "iron", "iron", "iron", "diamond", "diamond", "diamond"}))
+	fmt.Println(hailstone(5, [][]int{{0,0},{0,-1},{2, -3},{3,-3}}))
 }
 
-func mineral(picks []int, minerals []string) int {
-	answer := 1250
-	num := 0
-	for _, p := range picks {
-		num += p
+func hailstone(k int, ranges [][]int) []float64 {
+	answer := []float64{}
+	cumulative_areas := []float64{0.0}
+	area := 0.0
+    for k != 1 {
+		old_k := k
+		if k % 2 == 0 {
+			k = k/2
+		} else {
+			k = k*3 + 1
+		}
+		area = area + (float64(old_k) + float64(k)) / float64(2)
+		cumulative_areas = append(cumulative_areas, area)
 	}
-	dfs(0, picks, minerals, &answer, num)
+	
+	n := len(cumulative_areas) - 1
+	fmt.Println(cumulative_areas)
+	for _, r := range ranges {
+		if r[0] > n + r[1] {
+			answer = append(answer, float64(-1))
+		} else {
+			answer = append(answer, cumulative_areas[n + r[1]] - cumulative_areas[r[0]])
+		}
+	}
     return answer
-}
-
-func dfs(stress int, picks []int, minerals []string, ans *int, num int) {
-	fmt.Println(stress, picks, minerals, *ans)
-	if stress >= *ans {
-		return
-	}
-	if num == 0 || len(minerals) == 0 {
-		if stress < *ans {
-			*ans = stress
-		}
-		fmt.Println("end", stress)
-		return
-	}
-
-	for i, n := range picks {
-		if n != 0 {
-			add := 0
-			j := 0
-			for ;j<5; j++ {
-				if j >= len(minerals) {
-					break
-				}
-				add += calStress(i, minerals[j])
-			}
-			picks[i] -= 1
-			dfs(stress+add, picks, minerals[j:], ans, num-1)
-			picks[i] += 1
-		}
-	}
-}
-
-func calStress(pick int, mineral string) int {
-	if mineral == "diamond" {
-		return int(math.Pow(5, float64(pick)))
-	} else if mineral == "iron" && pick == 2{
-		return 5
-	}
-	return 1
 }
