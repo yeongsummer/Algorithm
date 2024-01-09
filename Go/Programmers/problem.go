@@ -1,16 +1,10 @@
-package main
+package programmers
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 	"strings"
 )
-
-func main() {
-	fmt.Println(problems([][]string{
-		{"a", "09:00", "10"}, {"b", "09:10", "10"}, {"c", "09:15", "10"}, {"d", "09:30", "10"}, {"e", "09:35", "10"}}))
-}
 
 func problems(plans [][]string) []string {
 	answer := []string{}
@@ -27,13 +21,12 @@ func problems(plans [][]string) []string {
 	sort.Slice(newPlan, func(i, j int) bool {
 		return newPlan[i].startTime < newPlan[j].startTime
 	})
-	fmt.Println(newPlan)
+
 	breakPlan := []Plan{}
 	nowPlan := newPlan[0]
 	now := newPlan[0].startTime + newPlan[0].spendTime
 	i := 1
 	for i < len(newPlan){
-		fmt.Println(i, now, nowPlan, breakPlan, answer)
 		if now <= newPlan[i].startTime {
 			answer = append(answer, nowPlan.name)
 			if now < newPlan[i].startTime && len(breakPlan) > 0 {
