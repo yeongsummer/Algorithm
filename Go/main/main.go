@@ -2,65 +2,76 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"strconv"
 	"strings"
 )
 
 func main() {
-	fmt.Println(problems([][]string{
-		{"a", "09:00", "10"}, {"b", "09:10", "10"}, {"c", "09:15", "10"}, {"d", "09:30", "10"}, {"e", "09:35", "10"}}))
+	fmt.Println(tictacto([]string{"O.X", ".O.", "..X"}))
 }
 
-func problems(plans [][]string) []string {
-	answer := []string{}
-	newPlan := []Plan{}
-	for _, plan := range plans {
-		hour := strings.Split(plan[1], ":")
-		h, _ := strconv.Atoi(hour[0])
-		m, _ := strconv.Atoi(hour[1])
-		start := h*60 + m
-		spend, _ := strconv.Atoi(plan[2])
-		newPlan = append(newPlan, Plan{plan[0], start, spend})
-	}
-
-	sort.Slice(newPlan, func(i, j int) bool {
-		return newPlan[i].startTime < newPlan[j].startTime
-	})
-	fmt.Println(newPlan)
-	breakPlan := []Plan{}
-	nowPlan := newPlan[0]
-	now := newPlan[0].startTime + newPlan[0].spendTime
-	i := 1
-	for i < len(newPlan){
-		fmt.Println(i, now, nowPlan, breakPlan, answer)
-		if now <= newPlan[i].startTime {
-			answer = append(answer, nowPlan.name)
-			if now < newPlan[i].startTime && len(breakPlan) > 0 {
-				nowPlan = breakPlan[len(breakPlan)-1]
-				breakPlan = breakPlan[:len(breakPlan)-1]
-				now = now + nowPlan.spendTime
-				continue
-			}
-		} else {
-			breakPlan = append(breakPlan, Plan{nowPlan.name, nowPlan.startTime, now - newPlan[i].startTime})
+func tictacto(board []string) int {
+	countO, countX := 0, 0
+	bingoO, bingoX := 0, 0
+	for _, row := range board {
+		cntO := strings.Count(row, "O")
+		if cntO == 3 {
+			bingoO ++
 		}
-
-		nowPlan = newPlan[i]
-		now = nowPlan.startTime + nowPlan.spendTime
-		i ++
+		countO += cntO
+		cntX := strings.Count(row, "X")
+		if cntX == 3 {
+			bingoX ++
+		}
+		countX += cntX
 	}
 
-	answer = append(answer, nowPlan.name)
-	for i := len(breakPlan)-1; i >= 0; i-- {
-		answer = append(answer, breakPlan[i].name)
+	for i:=0; i<3; i++ {
+		col := ""
+		for j:=0; j<3; j++ {
+			col += strings.Split(board[j], "")[i]
+		}
+		if strings.Count(col, "O") == 3 {
+			bingoO ++
+		}
+		if strings.Count(col, "X") == 3 {
+			bingoX ++
+		}
+	}
+
+	dia1, dia2 := "", ""
+	for i:=0; i<3; i++ {
+		dia1 += strings.Split(board[i], "")[i]
+		dia2 += strings.Split(board[i], "")[2-i]
 	}
 	
-	return answer
-}
+	if strings.Count(dia1, "O") == 3 {
+		bingoO ++
+	}
+	if strings.Count(dia1, "X") == 3 {
+		bingoX ++
+	}
+	if strings.Count(dia2, "O") == 3 {
+		bingoO ++
+	}
+	if strings.Count(dia2, "X") == 3 {
+		bingoX ++
+	}
 
-type Plan struct {
-	name      string
-	startTime int
-	spendTime int
+
+
+	if bingoO == 0 && bingoX == 0 {
+		if countO == countX || countO == countX+1 {
+			return 1
+		}
+	} else if bingoO == 1 && bingoX == 0 {
+		if countO - 1 == countX {
+			return 1
+		}
+	} else if bingoO == 0 && bingoX == 1 {
+		if countO  == countX {
+			return 1
+		}
+	}
+
+    return 0
 }
