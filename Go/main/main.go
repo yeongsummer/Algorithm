@@ -2,76 +2,53 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	fmt.Println(tictacto([]string{"O.X", ".O.", "..X"}))
+	fmt.Println(emoticon([][]int{{40, 10000}, {25, 10000}}, []int{7000, 9000}))
+	// fmt.Println(generatePermutations([]int{10, 20, 30, 40}, 4, make([]int, 4)))
 }
 
-func tictacto(board []string) int {
-	countO, countX := 0, 0
-	bingoO, bingoX := 0, 0
-	for _, row := range board {
-		cntO := strings.Count(row, "O")
-		if cntO == 3 {
-			bingoO ++
+func emoticon(users [][]int, emoticons []int) []int {
+	answer := []int{0, 0}
+	for _, p := range generatePermutations([]int{10, 20, 30, 40}, len(emoticons), make([]int, len(emoticons))) {
+		fmt.Println(p)
+		peoples, sales := 0, 0
+		for _, u := range users {
+			price := 0
+			for i, s := range p {
+				if s >= u[0] {
+					price += emoticons[i]-emoticons[i]*s/100
+				}
+			}
+			if price >= u[1] {
+				peoples += 1
+			} else {
+				sales += price
+			}
+			fmt.Println(price)
 		}
-		countO += cntO
-		cntX := strings.Count(row, "X")
-		if cntX == 3 {
-			bingoX ++
+		if peoples > answer[0] || (peoples == answer[0] && sales > answer[1]) {
+			answer[0], answer[1] = peoples, sales
 		}
-		countX += cntX
+	}
+	return answer
+}
+
+func generatePermutations(input []int, length int, result []int) [][]int {
+	var permutations [][]int
+
+	if length == 0 {
+		permutation := make([]int, len(result))
+		copy(permutation, result)
+		permutations = append(permutations, permutation)
+		return permutations
 	}
 
-	for i:=0; i<3; i++ {
-		col := ""
-		for j:=0; j<3; j++ {
-			col += strings.Split(board[j], "")[i]
-		}
-		if strings.Count(col, "O") == 3 {
-			bingoO ++
-		}
-		if strings.Count(col, "X") == 3 {
-			bingoX ++
-		}
+	for i := 0; i < len(input); i++ {
+		result[len(result)-length] = input[i]
+		permutations = append(permutations, generatePermutations(input, length-1, result)...)
 	}
 
-	dia1, dia2 := "", ""
-	for i:=0; i<3; i++ {
-		dia1 += strings.Split(board[i], "")[i]
-		dia2 += strings.Split(board[i], "")[2-i]
-	}
-	
-	if strings.Count(dia1, "O") == 3 {
-		bingoO ++
-	}
-	if strings.Count(dia1, "X") == 3 {
-		bingoX ++
-	}
-	if strings.Count(dia2, "O") == 3 {
-		bingoO ++
-	}
-	if strings.Count(dia2, "X") == 3 {
-		bingoX ++
-	}
-
-
-
-	if bingoO == 0 && bingoX == 0 {
-		if countO == countX || countO == countX+1 {
-			return 1
-		}
-	} else if bingoO == 1 && bingoX == 0 {
-		if countO - 1 == countX {
-			return 1
-		}
-	} else if bingoO == 0 && bingoX == 1 {
-		if countO  == countX {
-			return 1
-		}
-	}
-
-    return 0
+	return permutations
 }
