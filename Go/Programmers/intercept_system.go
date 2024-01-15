@@ -1,18 +1,6 @@
-package main
+package programmers
 
-import (
-	"fmt"
-	"sort"
-)
-
-func main() {
-	fmt.Println(intercept([][]int{
-        {0, 4},
-        {5, 10},
-        {6, 8},
-        {8, 9},
-    }))
-}
+import "sort"
 
 func intercept(targets [][]int) int {
 	answer := 1
