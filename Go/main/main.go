@@ -2,43 +2,61 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func main() {
-	fmt.Println(intercept([][]int{
-        {0, 4},
-        {5, 10},
-        {6, 8},
-        {8, 9},
-    }))
+	fmt.Println(archery(1, []int{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}))
 }
 
-func intercept(targets [][]int) int {
-	answer := 1
-	sort.Slice(targets, sortTarget(targets))
-	end := targets[0][1]
-    for _, t := range targets[1:] {
-		if t[0] >= end {
-            end = t[1]
-			answer += 1
-        } else {
-            if t[1] < end {
-                end = t[1]
-            }
-        }
+func archery(n int, info []int) []int {
+	answer := &[]int{}
+	total := 0
+	findWin(0, n, make([]int, 11), info, &total, answer)
+	if total == 0 {
+		return []int{-1}
 	}
-    return answer
+    return *answer
 }
 
-func sortTarget(targets [][]int) func(i, j int) bool {
-	return func(i, j int) bool {
-		if targets[i][0] < targets[j][0] {
-			return true
-		} else if targets[i][0] > targets[j][0] {
-			return false
+func findWin(i int, n int, cnts []int, info []int, total *int, answer *[]int) {
+	if i == 10 {
+		cnts[i] = n
+		t := 0
+		for i, c := range cnts {
+			if info[i] > c {
+				t -= 10 - i
+			} else if info[i] < c {
+				t += 10 - i
+			}
 		}
-
-		return targets[i][1] < targets[j][1]
+		if t < *total {
+			return
+		} else if t == *total && t != 0 {
+			a_i, a_c := findLow(*answer)
+			c_i, c_c := findLow(cnts)
+			if c_i <= a_i || (c_i == a_i && c_c <= a_c) {
+				return
+			}
+		}
+		*total = t
+		copyCnts := make([]int, len(cnts))
+		copy(copyCnts, cnts)
+		*answer = copyCnts
+		return
 	}
+	if info[i] < n {
+		cnts[i] = info[i] + 1
+		findWin(i+1, n - cnts[i], cnts, info, total, answer)
+		cnts[i] = 0
+	}
+	findWin(i+1, n, cnts, info, total, answer)
+}
+
+func findLow(cnts []int) (int, int) {
+	for i := 10; i >= 0; i-- {
+		if cnts[i] != 0 {
+			return i, cnts[i]
+		}
+	}
+	return -1, -1
 }
